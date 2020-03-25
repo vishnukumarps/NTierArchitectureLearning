@@ -11,7 +11,7 @@
  *
  * Date: 2018-01-20T17:24Z
  */
-( function( global, factory ) {
+( function( gloBLL, factory ) {
 
 	"use strict";
 
@@ -24,8 +24,8 @@
 		// This accentuates the need for the creation of a real `window`.
 		// e.g. var jQuery = require("jquery")(window);
 		// See ticket #14549 for more info.
-		module.exports = global.document ?
-			factory( global, true ) :
+		module.exports = gloBLL.document ?
+			factory( gloBLL, true ) :
 			function( w ) {
 				if ( !w.document ) {
 					throw new Error( "jQuery requires a window with a document" );
@@ -33,11 +33,11 @@
 				return factory( w );
 			};
 	} else {
-		factory( global );
+		factory( gloBLL );
 	}
 
 // Pass this if window is not defined yet
-} )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
+} )( typeof window !== "undefined" ? window : this, function( window, noGloBLL ) {
 
 // Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
 // throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
@@ -122,9 +122,9 @@ function toType( obj ) {
 		class2type[ toString.call( obj ) ] || "object" :
 		typeof obj;
 }
-/* global Symbol */
-// Defining this global in .eslintrc.json would create a danger of using the global
-// unguarded in another place, it seems safer to define global only for this module
+/* gloBLL Symbol */
+// Defining this gloBLL in .eslintrc.json would create a danger of using the gloBLL
+// unguarded in another place, it seems safer to define gloBLL only for this module
 
 
 
@@ -323,7 +323,7 @@ jQuery.extend( {
 			return true;
 		}
 
-		// Objects with prototype are plain iff they were constructed by a global Object function
+		// Objects with prototype are plain iff they were constructed by a gloBLL Object function
 		Ctor = hasOwn.call( proto, "constructor" ) && proto.constructor;
 		return typeof Ctor === "function" && fnToString.call( Ctor ) === ObjectFunctionString;
 	},
@@ -340,8 +340,8 @@ jQuery.extend( {
 		return true;
 	},
 
-	// Evaluates a script in a global context
-	globalEval: function( code ) {
+	// Evaluates a script in a gloBLL context
+	gloBLLEval: function( code ) {
 		DOMEval( code );
 	},
 
@@ -462,7 +462,7 @@ jQuery.extend( {
 		return concat.apply( [], ret );
 	},
 
-	// A global GUID counter for objects
+	// A gloBLL GUID counter for objects
 	guid: 1,
 
 	// jQuery.support is not used in Core but other projects attach their
@@ -1075,7 +1075,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		return document;
 	}
 
-	// Update global variables
+	// Update gloBLL variables
 	document = doc;
 	docElem = document.documentElement;
 	documentIsHTML = !isXML( document );
@@ -2561,7 +2561,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				}
 			}
 
-			// Override manipulation of globals by nested matchers
+			// Override manipulation of gloBLLs by nested matchers
 			if ( outermost ) {
 				dirruns = dirrunsUnique;
 				outermostContext = contextBackup;
@@ -3452,7 +3452,7 @@ function adoptValue( value, resolve, reject, noValue ) {
 	} catch ( value ) {
 
 		// Support: Android 4.0 only
-		// Strict mode functions invoked without .call/.apply get global-object context
+		// Strict mode functions invoked without .call/.apply get gloBLL-object context
 		reject.apply( undefined, [ value ] );
 	}
 }
@@ -4724,15 +4724,15 @@ function getAll( context, tag ) {
 
 
 // Mark scripts as having already been evaluated
-function setGlobalEval( elems, refElements ) {
+function setGloBLLEval( elems, refElements ) {
 	var i = 0,
 		l = elems.length;
 
 	for ( ; i < l; i++ ) {
 		dataPriv.set(
 			elems[ i ],
-			"globalEval",
-			!refElements || dataPriv.get( refElements[ i ], "globalEval" )
+			"gloBLLEval",
+			!refElements || dataPriv.get( refElements[ i ], "gloBLLEval" )
 		);
 	}
 }
@@ -4812,7 +4812,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 
 		// Preserve script evaluation history
 		if ( contains ) {
-			setGlobalEval( tmp );
+			setGloBLLEval( tmp );
 		}
 
 		// Capture executables
@@ -4946,7 +4946,7 @@ function on( elem, types, selector, data, fn, one ) {
  */
 jQuery.event = {
 
-	global: {},
+	gloBLL: {},
 
 	add: function( elem, types, handler, data, selector ) {
 
@@ -5057,7 +5057,7 @@ jQuery.event = {
 			}
 
 			// Keep track of which events have ever been used, for event optimization
-			jQuery.event.global[ type ] = true;
+			jQuery.event.gloBLL[ type ] = true;
 		}
 
 	},
@@ -5749,7 +5749,7 @@ function domManip( collection, args, callback, ignored ) {
 				for ( i = 0; i < hasScripts; i++ ) {
 					node = scripts[ i ];
 					if ( rscriptType.test( node.type || "" ) &&
-						!dataPriv.access( node, "globalEval" ) &&
+						!dataPriv.access( node, "gloBLLEval" ) &&
 						jQuery.contains( doc, node ) ) {
 
 						if ( node.src && ( node.type || "" ).toLowerCase()  !== "module" ) {
@@ -5782,7 +5782,7 @@ function remove( elem, selector, keepData ) {
 
 		if ( node.parentNode ) {
 			if ( keepData && jQuery.contains( node.ownerDocument, node ) ) {
-				setGlobalEval( getAll( node, "script" ) );
+				setGloBLLEval( getAll( node, "script" ) );
 			}
 			node.parentNode.removeChild( node );
 		}
@@ -5831,7 +5831,7 @@ jQuery.extend( {
 		// Preserve script evaluation history
 		destElements = getAll( clone, "script" );
 		if ( destElements.length > 0 ) {
-			setGlobalEval( destElements, !inPage && getAll( elem, "script" ) );
+			setGloBLLEval( destElements, !inPage && getAll( elem, "script" ) );
 		}
 
 		// Return the cloned set
@@ -8216,7 +8216,7 @@ jQuery.extend( jQuery.event, {
 		}
 
 		// Determine event propagation path in advance, per W3C events spec (#9951)
-		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
+		// Bubble up to document, then to window; watch for a gloBLL ownerDocument var (#9724)
 		if ( !onlyHandlers && !special.noBubble && !isWindow( elem ) ) {
 
 			bubbleType = special.delegateType || type;
@@ -8268,7 +8268,7 @@ jQuery.extend( jQuery.event, {
 				acceptData( elem ) ) {
 
 				// Call a native DOM method on the target with the same name as the event.
-				// Don't do default actions on window, that's where global variables be (#6170)
+				// Don't do default actions on window, that's where gloBLL variables be (#6170)
 				if ( ontype && isFunction( elem[ type ] ) && !isWindow( elem ) ) {
 
 					// Don't re-trigger an onFOO event when we call its FOO() method
@@ -8813,7 +8813,7 @@ jQuery.extend( {
 		url: location.href,
 		type: "GET",
 		isLocal: rlocalProtocol.test( location.protocol ),
-		global: true,
+		gloBLL: true,
 		processData: true,
 		async: true,
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -8923,8 +8923,8 @@ jQuery.extend( {
 			// Request state (becomes false upon send and true upon completion)
 			completed,
 
-			// To know if global events are to be dispatched
-			fireGlobals,
+			// To know if gloBLL events are to be dispatched
+			fireGloBLLs,
 
 			// Loop variable
 			i,
@@ -8938,8 +8938,8 @@ jQuery.extend( {
 			// Callbacks context
 			callbackContext = s.context || s,
 
-			// Context for global events is callbackContext if it is a DOM node or jQuery collection
-			globalEventContext = s.context &&
+			// Context for gloBLL events is callbackContext if it is a DOM node or jQuery collection
+			gloBLLEventContext = s.context &&
 				( callbackContext.nodeType || callbackContext.jquery ) ?
 					jQuery( callbackContext ) :
 					jQuery.event,
@@ -9081,12 +9081,12 @@ jQuery.extend( {
 			return jqXHR;
 		}
 
-		// We can fire global events as of now if asked to
+		// We can fire gloBLL events as of now if asked to
 		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
-		fireGlobals = jQuery.event && s.global;
+		fireGloBLLs = jQuery.event && s.gloBLL;
 
 		// Watch for a new set of requests
-		if ( fireGlobals && jQuery.active++ === 0 ) {
+		if ( fireGloBLLs && jQuery.active++ === 0 ) {
 			jQuery.event.trigger( "ajaxStart" );
 		}
 
@@ -9184,9 +9184,9 @@ jQuery.extend( {
 		} else {
 			jqXHR.readyState = 1;
 
-			// Send global event
-			if ( fireGlobals ) {
-				globalEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
+			// Send gloBLL event
+			if ( fireGloBLLs ) {
+				gloBLLEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
 			}
 
 			// If request was aborted inside ajaxSend, stop there
@@ -9311,18 +9311,18 @@ jQuery.extend( {
 			jqXHR.statusCode( statusCode );
 			statusCode = undefined;
 
-			if ( fireGlobals ) {
-				globalEventContext.trigger( isSuccess ? "ajaxSuccess" : "ajaxError",
+			if ( fireGloBLLs ) {
+				gloBLLEventContext.trigger( isSuccess ? "ajaxSuccess" : "ajaxError",
 					[ jqXHR, s, isSuccess ? success : error ] );
 			}
 
 			// Complete
 			completeDeferred.fireWith( callbackContext, [ jqXHR, statusText ] );
 
-			if ( fireGlobals ) {
-				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
+			if ( fireGloBLLs ) {
+				gloBLLEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
 
-				// Handle the global AJAX counter
+				// Handle the gloBLL AJAX counter
 				if ( !( --jQuery.active ) ) {
 					jQuery.event.trigger( "ajaxStop" );
 				}
@@ -9372,7 +9372,7 @@ jQuery._evalUrl = function( url ) {
 		dataType: "script",
 		cache: true,
 		async: false,
-		global: false,
+		gloBLL: false,
 		"throws": true
 	} );
 };
@@ -9637,7 +9637,7 @@ jQuery.ajaxSetup( {
 	},
 	converters: {
 		"text script": function( text ) {
-			jQuery.globalEval( text );
+			jQuery.gloBLLEval( text );
 			return text;
 		}
 	}
@@ -10313,11 +10313,11 @@ jQuery.isNumeric = function( obj ) {
 // understands anonymous AMD modules. A named AMD is safest and most robust
 // way to register. Lowercase jquery is used because AMD module names are
 // derived from file names, and jQuery is normally delivered in a lowercase
-// file name. Do this after creating the global so that if an AMD module wants
+// file name. Do this after creating the gloBLL so that if an AMD module wants
 // to call noConflict to hide this version of jQuery, it will work.
 
 // Note that for maximum portability, libraries that are not jQuery should
-// declare themselves as anonymous modules, and avoid setting a global if an
+// declare themselves as anonymous modules, and avoid setting a gloBLL if an
 // AMD loader is present. jQuery is a special case. For more information, see
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
@@ -10353,7 +10353,7 @@ jQuery.noConflict = function( deep ) {
 // Expose jQuery and $ identifiers, even in AMD
 // (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
 // and CommonJS for browser emulators (#13566)
-if ( !noGlobal ) {
+if ( !noGloBLL ) {
 	window.jQuery = window.$ = jQuery;
 }
 

@@ -3,10 +3,10 @@
   * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
-(function (global, factory) {
+(function (gloBLL, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
-  (global = global || self, factory(global.bootstrap = {}, global.jQuery));
+  (gloBLL = gloBLL || self, factory(gloBLL.bootstrap = {}, gloBLL.jQuery));
 }(this, function (exports, $) { 'use strict';
 
   $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
@@ -4076,7 +4076,7 @@
    */
 
 
-  Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
+  Popper.Utils = (typeof window !== 'undefined' ? window : gloBLL).PopperUtils;
   Popper.placements = placements;
   Popper.Defaults = Defaults;
 
@@ -5197,7 +5197,7 @@
   var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
   var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
   var DefaultWhitelist = {
-    // Global attributes allowed on any supplied element below.
+    // GloBLL attributes allowed on any supplied element below.
     '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
     a: ['target', 'href', 'title', 'rel'],
     area: [],

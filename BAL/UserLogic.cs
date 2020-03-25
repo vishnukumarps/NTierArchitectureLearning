@@ -6,7 +6,7 @@ using EncryptionLayer.Interfaces;
 using System.Threading.Tasks;
 using Entities;
 
-namespace BAL
+namespace BLL
 {
     public class UserLogic
     {

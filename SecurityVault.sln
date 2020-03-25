@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecurityVault", "SecurityVa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{4CF028E8-FCE5-4416-9E47-C381CB142432}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BAL", "BAL\BAL.csproj", "{1AA920AD-F909-4E6A-AE15-76E2564631B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BAL\BLL.csproj", "{1AA920AD-F909-4E6A-AE15-76E2564631B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionLayer", "EncryptionLayer\EncryptionLayer.csproj", "{0B148154-29CD-42EE-886C-4D3C335E2EA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptionLayer", "EncryptionLayer\EncryptionLayer.csproj", "{0B148154-29CD-42EE-886C-4D3C335E2EA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
