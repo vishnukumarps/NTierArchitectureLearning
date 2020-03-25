@@ -10,6 +10,8 @@ namespace EncryptionLayer.Interfaces
     {
      Task<Registration> EncryptUser(Registration user,string Key);
      Task<Registration> DecryptUser(Registration user,string Key);
+
+      Task<bool> Login(string Email,string Password,string Key);
      string GenerateSecretKey();
     }
 }

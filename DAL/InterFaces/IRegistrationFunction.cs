@@ -9,6 +9,6 @@ namespace DAL.InterFaces
     public  interface IRegistrationFunction
     {
         public Task<Registration> AddUser(Registration user);
-       
+        public Task<List<Registration>> GetAllUser();
     }
 }

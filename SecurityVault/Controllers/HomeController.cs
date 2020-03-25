@@ -38,9 +38,15 @@ namespace SecuredLoginSystem
             return View();
         }
         [HttpPost]
-        public IActionResult LoginPage(string Email,string Password,string Key)
+        public async Task<IActionResult> LoginPage(string Email,string Password,string Key)
         {
-          
+            var result = await user.Login(Email,Password,Key);
+            if(result==true)
+            {
+                return RedirectToAction("Success", "Home");
+            }
+
+
             return RedirectToAction("Fail", "Home");
         }
 

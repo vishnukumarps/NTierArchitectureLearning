@@ -10,11 +10,11 @@ namespace BAL
 {
     public class UserLogic
     {
-        IEncryptUserFunction encrypt;
+        IEncryptUserFunction crypto;
         HelperUtils utils;
         public UserLogic()
         {
-            encrypt = new EncryptUserFunction();
+            crypto = new EncryptUserFunction();
             utils = new HelperUtils();
         }
       
@@ -23,9 +23,9 @@ namespace BAL
 
             try
             {
-                var SecretKey = encrypt.GenerateSecretKey();
+                var SecretKey = crypto.GenerateSecretKey();
 
-                var Result = await encrypt.EncryptUser(newUser, SecretKey);
+                var Result = await crypto.EncryptUser(newUser, SecretKey);
                 if (Result != null)
                 {
                     utils.SendSms(newUser.PhoneNumber, "Your SecretKey is " + SecretKey);
@@ -42,5 +42,18 @@ namespace BAL
         }
 
 
+        public async Task<Registration> GetRegistrationAsync(Registration user,string Key)
+        {
+            
+            var Result= await crypto.DecryptUser(user, Key);
+            return Result;
+        }
+
+
+        public async Task<bool>Login(string Email,string Password,string Key)
+        {
+            var result = await crypto.Login(Email,Password,Key);
+            return result;
+        }
     }
 }

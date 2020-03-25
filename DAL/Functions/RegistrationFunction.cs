@@ -1,6 +1,7 @@
 ﻿using DAL.DataContext;
 using DAL.InterFaces;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +22,20 @@ namespace DAL.Functions
 
             }
             return user;
+        }
+
+
+
+        public async Task<List<Registration>> GetAllUser()
+        {
+
+            using (var context = new DataBaseContext(DataBaseContext.ops.dbOptions))
+            {
+                var UserList = await context.Registrations.ToListAsync();
+
+
+                return UserList;
+            }
         }
     }
 }
