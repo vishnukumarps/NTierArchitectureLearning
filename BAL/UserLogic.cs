@@ -11,22 +11,34 @@ namespace BAL
     public class UserLogic
     {
         IEncryptUserFunction encrypt;
+        HelperUtils utils;
         public UserLogic()
         {
             encrypt = new EncryptUserFunction();
+            utils = new HelperUtils();
         }
       
         public async Task<bool> AddAsync(Registration newUser)
         {
 
-            var SecretKey = encrypt.GenerateSecretKey();
-
-           var Result= await encrypt.EncryptUser(newUser,SecretKey);
-            if(Result!=null)
+            try
             {
-                return true;
+                var SecretKey = encrypt.GenerateSecretKey();
+
+                var Result = await encrypt.EncryptUser(newUser, SecretKey);
+                if (Result != null)
+                {
+                    utils.SendSms(newUser.PhoneNumber, "Your SecretKey is " + SecretKey);
+                    return true;
+
+                }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
 
