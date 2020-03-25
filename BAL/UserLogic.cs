@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DAL.InterFaces;
-using DAL.Functions;
+using EncryptionLayer.Functions;
+using EncryptionLayer.Interfaces;
 using System.Threading.Tasks;
 using Entities;
 
@@ -10,16 +10,18 @@ namespace BAL
 {
     public class UserLogic
     {
-        IRegistrationFunction user;
+        IEncryptUserFunction encrypt;
         public UserLogic()
         {
-           user = new RegistrationFunction();
+            encrypt = new EncryptUserFunction();
         }
       
         public async Task<bool> AddAsync(Registration newUser)
         {
 
-           var Result=await user.AddUser(newUser);
+            var SecretKey = encrypt.GenerateSecretKey();
+
+           var Result= await encrypt.EncryptUser(newUser,SecretKey);
             if(Result!=null)
             {
                 return true;
