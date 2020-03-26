@@ -1,27 +1,27 @@
 ﻿using DAL.DataContext;
-using DAL.InterFaces;
-using Entities;
+using DAL.Interfaces;
+using Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Functions
+namespace DAL.Services
 {
-    public class UserFunction : IUserFunction
+    public class UserDataService : IUserDataService
     {
-        public async  Task<User> AddUser(User user)
+        public async  Task<User> AddUser(User newUser)
         {
             using (var context = new DataBaseContext(DataBaseContext.ops.dbOptions))
             {
-                user.InternalUserId = Guid.NewGuid().ToString();
-                await context.Users.AddAsync(user);
+                newUser.InternalUserId = Guid.NewGuid().ToString();
+                await context.Users.AddAsync(newUser);
                 await context.SaveChangesAsync();
 
 
             }
-            return user;
+            return newUser;
         }
 
 

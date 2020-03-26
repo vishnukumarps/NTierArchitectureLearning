@@ -1,5 +1,6 @@
 ﻿using BLL;
-using Entities;
+using BLL.Interfaces;
+using Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -13,9 +14,11 @@ namespace SecuredLoginSystem
     public class HomeController : Controller
     {
 
-        UserLogic user = new UserLogic();
-        public HomeController()
+        //UserLogic user = new UserLogic();
+        private readonly IUserBusinessService _userBusinessService;
+        public HomeController(IUserBusinessService _userBusinessService)
         {
+            this._userBusinessService = _userBusinessService;
         }
 
         public IActionResult Index(string msg)
@@ -40,8 +43,8 @@ namespace SecuredLoginSystem
         [HttpPost]
         public async Task<IActionResult> Login(string Email,string Password,string Key)
         {
-            var result = await user.Login(Email,Password,Key);
-            if(result==true)
+            var result = await _userBusinessService.Login(Email, Password, Key);
+            if (result == true)
             {
                 return RedirectToAction("Success", "Home");
             }
@@ -57,10 +60,13 @@ namespace SecuredLoginSystem
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(User model)
+        public async Task<IActionResult> Register(User newUser)
         {
-           var result=  await user.AddAsync(model);
-            if(result==true)
+        
+
+            var result = await _userBusinessService.Add(newUser);
+          
+            if (result!=null)
             {
                 return RedirectToAction("Success", "Home", new { msg = "Success" });
             }

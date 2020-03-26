@@ -19,11 +19,13 @@
 
     <div class="container">
 
-        <form action="Home/Register" method="post">
-            <div class="form-group">
+        
+            @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+            {
+             <div class="form-group">
                 <label for="email">Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Name" name="Name">
-            </div>
+             </div>
             <div class="form-group">
                 <label for="pwd">Address</label>
                 <input type="text" class="form-control" id="name" placeholder="adderss" name="Address">
@@ -35,20 +37,20 @@
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="please enter valid Email address" name="Email">
-            </div>
-            <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label for="email">Password</label>
                 <input type="password" class="form-control" id="email" placeholder="please enter valid Email address" name="Password">
-            </div>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+               </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            }
     </div>
 
     <div>
         @if (Model != null)
         {
             <p class="text-success">@Model</p>
-        }
+            }
         <p1>Please check your your  phone</p1>
     </div>
     <!-- Optional JavaScript -->

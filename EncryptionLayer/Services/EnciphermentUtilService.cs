@@ -1,11 +1,13 @@
-﻿using System;
+﻿using EncryptionLayer.Interfaces;
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace SecuredLoginSystem
+namespace EncryptionLayer.Services
 {
-    public class EncryptionUtils
+
+    public class EnciphermentUtilService : IEnciphermentUtilService
     {
         public string EncryptString(string key, string plainText)
         {
@@ -60,8 +62,6 @@ namespace SecuredLoginSystem
             }
         }
 
-
-
         public string GenerateKey()
         {
            
@@ -83,21 +83,21 @@ namespace SecuredLoginSystem
                 return str_build.ToString();
             
         }
-        public  string GenerateKey(int iKeySize)
-        {
-            RijndaelManaged aesEncryption = new RijndaelManaged();
-            aesEncryption.KeySize = iKeySize;
-            aesEncryption.BlockSize = 128;
-            aesEncryption.Mode = CipherMode.CBC;
-            aesEncryption.Padding = PaddingMode.PKCS7;
-            aesEncryption.GenerateIV();
-            string ivStr = Convert.ToBase64String(aesEncryption.IV);
-            aesEncryption.GenerateKey();
-            string keyStr = Convert.ToBase64String(aesEncryption.Key);
-            string completeKey = ivStr + "," + keyStr;
+        //public  string GenerateKey(int iKeySize)
+        //{
+        //    RijndaelManaged aesEncryption = new RijndaelManaged();
+        //    aesEncryption.KeySize = iKeySize;
+        //    aesEncryption.BlockSize = 128;
+        //    aesEncryption.Mode = CipherMode.CBC;
+        //    aesEncryption.Padding = PaddingMode.PKCS7;
+        //    aesEncryption.GenerateIV();
+        //    string ivStr = Convert.ToBase64String(aesEncryption.IV);
+        //    aesEncryption.GenerateKey();
+        //    string keyStr = Convert.ToBase64String(aesEncryption.Key);
+        //    string completeKey = ivStr + "," + keyStr;
 
-            return Convert.ToBase64String(ASCIIEncoding.UTF8.GetBytes(completeKey));
-        }
+        //    return Convert.ToBase64String(ASCIIEncoding.UTF8.GetBytes(completeKey));
+        //}
 
         // var key = "b14ca5898a4e4133bbce2ea2315a1916";
 
