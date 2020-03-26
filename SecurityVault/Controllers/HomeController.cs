@@ -38,7 +38,7 @@ namespace SecuredLoginSystem
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> LoginPage(string Email,string Password,string Key)
+        public async Task<IActionResult> Login(string Email,string Password,string Key)
         {
             var result = await user.Login(Email,Password,Key);
             if(result==true)
@@ -57,7 +57,7 @@ namespace SecuredLoginSystem
         }
 
         [HttpPost]
-        public async Task<IActionResult> ReadData(User model)
+        public async Task<IActionResult> Register(User model)
         {
            var result=  await user.AddAsync(model);
             if(result==true)
