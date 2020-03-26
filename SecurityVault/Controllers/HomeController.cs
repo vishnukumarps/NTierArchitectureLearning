@@ -23,7 +23,6 @@ namespace SecurityVault.Web
 
         public IActionResult Index(string msg)
         {
-
           
             return View(msg);
         }
