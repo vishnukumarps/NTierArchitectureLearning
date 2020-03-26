@@ -18,7 +18,7 @@ namespace BLL
             utils = new HelperUtils();
         }
       
-        public async Task<bool> AddAsync(Registration newUser)
+        public async Task<bool> AddAsync(User newUser)
         {
 
             try
@@ -42,7 +42,7 @@ namespace BLL
         }
 
 
-        public async Task<Registration> GetRegistrationAsync(Registration user,string Key)
+        public async Task<User> GetUserAsync(User user,string Key)
         {
             
             var Result= await crypto.DecryptUser(user, Key);

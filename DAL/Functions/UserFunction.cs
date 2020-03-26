@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace DAL.Functions
 {
-    public class RegistrationFunction : IRegistrationFunction
+    public class UserFunction : IUserFunction
     {
-        public async  Task<Registration> AddUser(Registration user)
+        public async  Task<User> AddUser(User user)
         {
             using (var context = new DataBaseContext(DataBaseContext.ops.dbOptions))
             {
-                user.InternalRegistrationId = Guid.NewGuid().ToString();
-                await context.Registrations.AddAsync(user);
+                user.InternalUserId = Guid.NewGuid().ToString();
+                await context.Users.AddAsync(user);
                 await context.SaveChangesAsync();
 
 
@@ -26,12 +26,12 @@ namespace DAL.Functions
 
 
 
-        public async Task<List<Registration>> GetAllUser()
+        public async Task<List<User>> GetAllUser()
         {
 
             using (var context = new DataBaseContext(DataBaseContext.ops.dbOptions))
             {
-                var UserList = await context.Registrations.ToListAsync();
+                var UserList = await context.Users.ToListAsync();
 
 
                 return UserList;

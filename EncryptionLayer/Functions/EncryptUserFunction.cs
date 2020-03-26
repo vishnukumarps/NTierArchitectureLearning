@@ -13,15 +13,15 @@ namespace EncryptionLayer.Functions
     public class EncryptUserFunction : IEncryptUserFunction
     {
 
-        IRegistrationFunction registration;
+        IUserFunction User;
         EncryptionUtils crypto;
         public EncryptUserFunction()
         {
-            registration = new RegistrationFunction();
+            User = new UserFunction();
             crypto = new EncryptionUtils();
         }
 
-        public async Task<Registration> DecryptUser(Registration user, string key)
+        public async Task<User> DecryptUser(User user, string key)
         {
            
             user.Name = crypto.DecryptString(key, user.Name);
@@ -33,7 +33,7 @@ namespace EncryptionLayer.Functions
             return user;
         }
 
-        public async Task<Registration> EncryptUser(Registration user, string Key)
+        public async Task<User> EncryptUser(User user, string Key)
         {
             
             user.Name = crypto.EncryptString(Key, user.Name);
@@ -42,7 +42,7 @@ namespace EncryptionLayer.Functions
             user.Password = crypto.EncryptString(Key, user.Password);
             user.PhoneNumber = crypto.EncryptString(Key, user.PhoneNumber);
             user.Key = Key;
-            var Result = await registration.AddUser(user);
+            var Result = await User.AddUser(user);
             return Result;
         }
 
@@ -59,7 +59,7 @@ namespace EncryptionLayer.Functions
             var email = crypto.EncryptString(Key,Email);
             var password = crypto.EncryptString(Key, Password);
 
-            var allUser = await registration.GetAllUser();
+            var allUser = await User.GetAllUser();
             var user=allUser.Find(x=>x.Email==email && x.Password==password);
             if(user!=null)
             {

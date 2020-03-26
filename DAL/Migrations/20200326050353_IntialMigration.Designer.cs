@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20200324094055_IntialDbCreation")]
-    partial class IntialDbCreation
+    [Migration("20200326050353_IntialMigration")]
+    partial class IntialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,15 +20,18 @@ namespace DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Entities.Registration", b =>
+            modelBuilder.Entity("Entities.User", b =>
                 {
-                    b.Property<string>("InternalRegistrationId")
+                    b.Property<string>("InternalUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Key")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -40,9 +43,9 @@ namespace DAL.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("InternalRegistrationId");
+                    b.HasKey("InternalUserId");
 
-                    b.ToTable("Registrations");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

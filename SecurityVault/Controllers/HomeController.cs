@@ -57,7 +57,7 @@ namespace SecuredLoginSystem
         }
 
         [HttpPost]
-        public async Task<IActionResult> ReadData(Registration model)
+        public async Task<IActionResult> ReadData(User model)
         {
            var result=  await user.AddAsync(model);
             if(result==true)

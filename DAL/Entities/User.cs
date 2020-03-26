@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace Entities
 {
   
-    public class Registration
+    public class User
     {
         [Key]
-        public string  InternalRegistrationId { get; set; }
+        public string  InternalUserId { get; set; }
         public string Name { get; set; }
         public string  Address { get; set; }
         public string PhoneNumber { get; set; }
