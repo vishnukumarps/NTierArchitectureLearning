@@ -9,7 +9,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace SecuredLoginSystem
+namespace SecurityVault.Web
 {
     public class HomeController : Controller
     {

@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj" />
+    <ProjectReference Include="..\DAL\SecuredVault.Data.csproj" />
   </ItemGroup>
 
 </Project>

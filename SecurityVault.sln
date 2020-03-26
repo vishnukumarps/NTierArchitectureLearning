@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecurityVault", "SecurityVault\SecurityVault.csproj", "{2944CA60-DA7F-4696-AD85-15DD364AEED1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecurityVault.Web", "SecurityVault\SecurityVault.Web.csproj", "{2944CA60-DA7F-4696-AD85-15DD364AEED1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{4CF028E8-FCE5-4416-9E47-C381CB142432}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecuredVault.Data", "DAL\SecuredVault.Data.csproj", "{4CF028E8-FCE5-4416-9E47-C381CB142432}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BAL\BLL.csproj", "{1AA920AD-F909-4E6A-AE15-76E2564631B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecuredVault.Business", "BAL\SecuredVault.Business.csproj", "{1AA920AD-F909-4E6A-AE15-76E2564631B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptionLayer", "EncryptionLayer\EncryptionLayer.csproj", "{0B148154-29CD-42EE-886C-4D3C335E2EA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecuredVault.Encryption", "EncryptionLayer\SecuredVault.Encryption.csproj", "{0B148154-29CD-42EE-886C-4D3C335E2EA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
