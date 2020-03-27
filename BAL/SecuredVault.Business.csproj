@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Remove="UserLogic.cs" />
+    <Compile Remove="Utilities\HelperUtils.cs" />
   </ItemGroup>
 
   <ItemGroup>

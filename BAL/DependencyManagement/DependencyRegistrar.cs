@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SecuredVault.Business.Utilities;
 
 namespace BLL.DependencyManagement
 {
@@ -31,8 +32,9 @@ namespace BLL.DependencyManagement
             services.AddSingleton<IUserEncryptionService, UserEncryptionService>();
             services.AddTransient<IUserEncryptionService, UserEncryptionService>();
 
-
-
+            //
+            services.AddSingleton<IMessageService, MessageService>();
+            services.AddTransient<IMessageService, MessageService>();
             return services;
         }
 
