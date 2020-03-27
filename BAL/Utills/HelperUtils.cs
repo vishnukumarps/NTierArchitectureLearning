@@ -9,7 +9,7 @@ namespace BLL
 {
     public class HelperUtils
     {
-        public bool Status { get; set; }
+       public bool Status { get; set; }
         public bool SendSms(string toPhoneNumber, string msg)
         {
             using (var web = new System.Net.WebClient())
