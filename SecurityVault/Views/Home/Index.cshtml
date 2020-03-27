@@ -18,7 +18,7 @@
     <h1 class="text-center">User Page</h1>
 
     <div class="container">
-
+        <h4 class="text-danger">Please enter valid phone number</h4>
         
             @using (Html.BeginForm("Register", "Home", FormMethod.Post))
             {
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Mob</label>
-                <input type="number" class="form-control" id="mob" placeholder="please enter valid phone number" name="PhoneNumber">
+                <input type="number" class="form-control" required="" id="mob" placeholder="please enter valid phone number" name="PhoneNumber">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
